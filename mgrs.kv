@@ -1,0 +1,92 @@
+#:kivy 1.11.1
+
+<UI>
+
+  GridLayout:
+    cols:1
+
+    size: root.width, root.height
+    canvas.before:
+      Color:
+        rgba: 0.75,0.75,0.75, 1.0
+      Rectangle:
+        pos: self.pos
+        size: self.size
+
+    GridLayout:
+      cols:2
+
+      TextInput:
+        multiline: False
+        id: input_pos
+        font_size: 0.4 * self.height
+        halign: 'center'
+        valign: 'middle'
+        hint_text: 'enter LL/MGRS/BNG'
+        hint_text_color: [0.7, 0.7, 0.7, 1]
+
+
+
+      Button:
+        id: clear
+        text: 'clear'
+        font_size: 0.25 * self.height
+        font_color: (1.0,1.0,1.0,1.0)
+        halign: 'center'
+        background_normal: ''
+        background_color: (0.5,0.5,0.5,1.0)
+        size_hint: (0.25,0.75)
+        on_press: root.clear_input()
+
+    Label:
+      id: output_pos
+      text: root.converted_pos
+      font_size: 0.5 * self.height
+      halign: 'center'
+      valign: 'middle'
+      size: self.texture_size
+
+    GridLayout:
+
+      cols:6
+
+      ToggleButton:
+        id: deg
+        text: 'DEG'
+        group: 'format'
+        state: 'normal'
+        on_press: self.state = 'down'
+
+      ToggleButton:
+        id: dm
+        text: 'DM'
+        group: 'format'
+        state: 'down'
+        on_press: self.state = 'down'
+
+      ToggleButton:
+        id: dms
+        text: 'DMS'
+        group: 'format'
+        state: 'normal'
+        on_press: self.state = 'down'
+        
+      ToggleButton:
+        id: mgrs
+        text: 'MGRS'
+        group: 'format'
+        state: 'normal'
+        on_press: self.state = 'down'
+        
+      ToggleButton:
+        id: bng
+        text: 'BNG'
+        group: 'format'
+        state: 'normal'
+        on_press: self.state = 'down' 
+
+      Button:
+        text: 'convert'
+        background_normal: ''
+        background_color: (0.5,0.5,0.5,1.0)
+        on_press: root.select_format()
