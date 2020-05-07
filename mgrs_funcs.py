@@ -156,8 +156,10 @@ def convert_deg_mgrs(input_tup: tuple) -> str:
   try:
 
     temp = m.toMGRS(input_tup[0], input_tup[1])
+    temp = temp.decode('utf-8')
+    temp = temp[:5] + ' ' + temp[5:10] + ' ' + temp[10:]
 
-    return temp.decode('utf-8')
+    return temp
 
   except:
 
